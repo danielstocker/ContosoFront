@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "API Page";
+    int iterator = 0;
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Database Items</th>
+    </tr>
+
+    @{ iterator = 0; }
+    @foreach (var item in ViewBag.Items)
+    {
+        <tr>
+            <td>
+                @{ 
+                    var keyValue = item.Split(new string[] { @" || " }, StringSplitOptions.None);
+                    var key = keyValue[0].Trim();
+                    var value = keyValue[1].Trim();
+                }
+                @using (Html.BeginForm("Edit", "API", FormMethod.Post))
+                {
+                    <input type="text" name="formKey" value="@key" readonly="readonly" />
+                    <input type="text" name="formValue" value="@value" />
+                    <input type="submit" value="Edit" />
+                }
+                @Html.ActionLink("Delete", "Delete", new { id = iterator })
+                @{ iterator++; }
+            </td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm("Create", "API", FormMethod.Post))
+{
+    <p>
+        <input type="text" name="formKey" value="new Key" />
+        <input type="text" name="formValue" value="new Value" />
+        <input type="submit" value="Add" />
+    </p>
+}

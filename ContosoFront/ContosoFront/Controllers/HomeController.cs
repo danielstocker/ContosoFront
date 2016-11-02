@@ -8,21 +8,18 @@ namespace ContosoFront.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Welcome. Please go to the API Interaction page to test the API.";
 
             return View();
         }
+
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contoso Contact Page";
 
             return View();
         }
