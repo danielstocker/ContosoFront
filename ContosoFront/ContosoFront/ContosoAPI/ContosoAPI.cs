@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using ContosoFront;
 using Microsoft.Rest;
 using Newtonsoft.Json.Linq;
+using System.Configuration;
 
 namespace ContosoFront
 {
@@ -46,7 +47,7 @@ namespace ContosoFront
         public ContosoAPI()
             : base()
         {
-            this._baseUri = new Uri("http://contosoapi.azurewebsites.net");
+            this._baseUri = new Uri(ConfigurationManager.AppSettings["ApiLocation"]);
         }
         
         /// <summary>
@@ -59,7 +60,7 @@ namespace ContosoFront
         public ContosoAPI(params DelegatingHandler[] handlers)
             : base(handlers)
         {
-            this._baseUri = new Uri("http://contosoapi.azurewebsites.net");
+            this._baseUri = new Uri(ConfigurationManager.AppSettings["ApiLocation"]);
         }
         
         /// <summary>
@@ -75,7 +76,7 @@ namespace ContosoFront
         public ContosoAPI(HttpClientHandler rootHandler, params DelegatingHandler[] handlers)
             : base(rootHandler, handlers)
         {
-            this._baseUri = new Uri("http://contosoapi.azurewebsites.net");
+            this._baseUri = new Uri(ConfigurationManager.AppSettings["ApiLocation"]);
         }
         
         /// <summary>
